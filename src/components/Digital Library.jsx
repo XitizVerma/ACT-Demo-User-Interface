@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css';
+import Search from './Search';
 class DigitalLibrary extends React.Component {
     render(){
     return (
@@ -28,17 +29,7 @@ class DigitalLibrary extends React.Component {
 
             <hr style={{width: "90%", backgroundColor:"rgb(0, 22, 119)",height: "10px",borderRadius:"10px"}}/>
 
-            <section class="searchtext">ACT Library Search</section>
-            
-            <div class="bar">
-                <a href={"http://integratedonlineedigitallibraryact.s3.amazonaws.com/"}> 
-                <input class="searchbar" type="text" title="Search" placeholder="Search over 784393458 resources in ACT Library!"/>
-                <img class="voice" alt ="google mic"  
-                src={"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Google_mic.svg/716px-Google_mic.svg.png"}
-                title={"Search by Voice"}/>
-                </a>
-            </div>
-            <br/>
+            <Search/>
 
             <img alt="UI" src="./images/content.png" style={{width: "100%",paddingBottom: "1em"}}/>
             <img alt="UI" src="./images/demo.png" style={{width: "100%",paddingBottom: "1em"}}/>

@@ -10,23 +10,25 @@ class Admin extends React.Component {
         }
     }
     multipleFileChangedHandler = (event) => {
+        event.preventDefault();
         this.setState({
-         selectedFiles: event.target.files
+         selectedFiles: event.target[0].files
         });
         console.log( event.target.files );
         alert("All the Files have been uploaded to the ACT Cloud Library!");
        };
 
-       multipleFileUploadHandler = () => {
-        
+       multipleFileUploadHandler = (event) => {
+        event.preventDefault();
+        console.log(event.target.length);
         const data = new FormData();
-      let selectedFiles = this.state.selectedFiles;
-      // If file selected
+        let selectedFiles = this.state.selectedFiles;
+        // If file selected
         if ( selectedFiles ) {
          for ( let i = 0; i < selectedFiles.length; i++ ) {
           data.append( 'galleryImage', selectedFiles[ i ], selectedFiles[ i ].name );
          }
-      axios.post( '/backend/s3Upload/multiple-file-upload', data, {
+      axios.post( '/server/s3Upload/multiple-file-upload', data, {
           headers: {
            'accept': 'application/json',
            'Accept-Language': 'en-US,en;q=0.8',
@@ -73,6 +75,12 @@ class Admin extends React.Component {
         $( alertEl ).remove();
         }, 3000 );
     };
+
+    handleUpload=(event)=>{
+        event.preventDefault();
+        console.log(event.target[0].value);
+    }
+    
       render() {
         return (
         <div>
@@ -85,9 +93,9 @@ class Admin extends React.Component {
             <header class="enter" style={{float:"left",paddingLeft:"8%",color:"rgb(11, 11, 129)"}}>
                 Easily Manage Users, Books, Newsletters etc. from a Powerful Dashboard!</header><br/>
             <p class="enter">Enter the Book/Journal/Newsletter:</p>
-            <form class="aform" onsubmit={this.multipleFileUploadHandler}>
+            <form class="aform" onSubmit={this.multipleFileChangedHandler}>
                 <input  class="in" type="file" name="Name" multiple placeholder="Enter the Book/Journal" 
-                    onChange={this.multipleFileChangedHandler}/>
+                    />
                 <input class="submit" type="submit" value="Upload" />
             </form>
             </div>

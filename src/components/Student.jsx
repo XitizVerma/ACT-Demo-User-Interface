@@ -2,6 +2,7 @@ import React from 'react';
 import './index.css';
 import Cards from './Cards';
 import data from './Data';
+import Search from './Search';
 export default function Student  ({borrowlist, updateBorrowList}) {
     function speed(index)
           {
@@ -39,16 +40,7 @@ export default function Student  ({borrowlist, updateBorrowList}) {
         <header class="enter" style={{float:"left",paddingLeft:"8",color: "rgb(11, 11, 129)"}}>
             Easily Manage Books, Newsletters etc. from a Powerful Dashboard!</header><br/>
         <p class="enter">Enter the Book/Journal/Newsletter:</p>
-        <section class="searchtext"><b>ACT Library Search</b></section>
-        <div class="bar">
-        <a href={"http://integratedonlineedigitallibraryact.s3.amazonaws.com/"}>
-            <input class="searchbar" type="text" title="Search" 
-            placeholder="Search over 784393458 resources in ACT Library!"/>
-                <img class="voice" alt="Google mic"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Google_mic.svg/716px-Google_mic.svg.png"
-                title="Search by Voice"/>
-            </a>
-        </div>
+        <Search/>
 
         <br/>
         <section class="searchtext">Your Recently Viewed Articles:</section><br/>
