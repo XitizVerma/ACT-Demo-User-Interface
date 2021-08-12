@@ -1,25 +1,30 @@
 import React from 'react';
 import './index.css';
-export default class Student extends React.Component 
-{
-    speed()
+import Cards from './Cards';
+import data from './Data';
+export default function Student  ({borrowlist, updateBorrowList}) {
+    function speed(index)
           {
             alert("Machine Learning Book has been added to your Borrowing List.Kindly Checkout !");
+            const newList = [...borrowlist]
+            newList.push(data[index])
+            console.log(newList)
+            updateBorrowList(newList)
           }
-    speed2()
+    function speed2()
           {
             alert("DevOps Journal has been added to your Borrowing List.Kindly Checkout !");
           }
-    speed3()
+    function speed3(link)
           {
-            alert("Shareable Link is : https://integratedonlineedigitallibraryact.s3.ap-south-1.amazonaws.com/Machine+Learning+Algorithms+Simplified.pdf");
+            alert("Shareable Link is : "+link);
           }
-    speed4()
+    function speed4()
           {
             alert("Shareable Link is : https://integratedonlineedigitallibraryact.s3.ap-south-1.amazonaws.com/DevOps+Roadmap.jpg");
           }
 
-    render(){
+   
     return (
     <div style={{fontFamily:"Courier New"}}>
         <br/>
@@ -49,29 +54,22 @@ export default class Student extends React.Component
         <section class="searchtext">Your Recently Viewed Articles:</section><br/>
         <section class="searchtext" style={{fontSize: "18px"}}><b>Click on any article to read:</b></section><br/>
         <div style={{width: "50%",margin:"auto"}}>
-        <div class="gallery">
-            <a target="_blank" rel="noreferrer"
-            href="https://integratedonlineedigitallibraryact.s3.ap-south-1.amazonaws.com/Machine+Learning+Algorithms+Simplified.pdf">
-                <img src="./images/ML.jpg" alt="ML" width="30%" height="400"/>
-            </a>
-            <div class="desc">Machine Learning</div>
-            <div class="speed" onClick={this.speed}>Borrow</div>
-            <div class="speed2" onClick={this.speed3}>Share</div>
-        
-        </div>
-        
-        <div class="gallery">
-            <a target="_blank" rel="noreferrer"
-            href="https://integratedonlineedigitallibraryact.s3.ap-south-1.amazonaws.com/DevOps+Roadmap.jpg">
-                <img src="./images/DevOps.jpg" alt="DevOps" width="30%" height="400"/>
-            </a>
-            <div class="desc">DevOps RoadMap Journal</div>
-            <div class="speed" onClick={this.speed2}>Borrow</div>
-            <div class="speed2" onClick={this.speed4}>Share</div>
-        </div>
+    
+
+        {data.map((val,index)=>{
+            return (
+                <Cards  
+                    link={val.link}
+                    index={index}
+                    image={val.image}
+                    name={val.name}
+                    borrow={speed} 
+                    share={speed3}/>
+        )})}
+
     </div>
     </div>
     );
-}
+
 }
 

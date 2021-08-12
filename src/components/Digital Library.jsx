@@ -7,7 +7,7 @@ class DigitalLibrary extends React.Component {
             <div class="navbar">
                 <ul> 
                     <li style={{float:"left", backgroundColor:"rgb(0, 0, 148)"}}>
-                    <a href="/login" onClick="/login" method="POST" target="_blank">Sign In</a></li>
+                    <a href="/login" onClick="/login" method="POST" target="_self">Sign In</a></li>
                     <li><a href="#videos">Videos</a></li>
                     <li><a href="#ebooks">E-Books</a></li>
                     <li><a href="#magazines">Magazines</a></li>
