@@ -1,7 +1,13 @@
 import React from 'react'
 import './index.css';
 import Cards from './Cards'
-export default function Borrow({borrowlist}) {
+
+import useStateValue from './Context/StateProvider';
+
+
+export default function Borrow() {
+
+    const [initState, dispatch] = useStateValue()
     function speed()
           {
             alert("Machine Learning Book has been added to your Borrowing List.Kindly Checkout !");
@@ -26,8 +32,8 @@ export default function Borrow({borrowlist}) {
             <br/>
             <section class="searchtext">Your Borrowed Books::</section><br/>
             <div style={{width: "50%",margin:"auto"}}>
-                {console.log(borrowlist)}
-            {borrowlist.map((val, index)=>{
+                {console.log(initState)}
+            {initState.map((val, index)=>{
                 return (<Cards
                     link={val.link}
                     index={index}

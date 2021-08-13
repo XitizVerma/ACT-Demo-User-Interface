@@ -1,15 +1,23 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './index.css';
 import Cards from './Cards';
 import data from './Data';
-export default function Student  ({borrowlist, updateBorrowList}) {
+
+import useStateValue from './Context/StateProvider';
+
+import { ADD_BORROW } from './Context/reducer';
+export default function Student  () {
+    const [initState, dispatch] = useStateValue()
     function speed(index)
           {
             alert("Machine Learning Book has been added to your Borrowing List.Kindly Checkout !");
-            const newList = [...borrowlist]
-            newList.push(data[index])
-            console.log(newList)
-            updateBorrowList(newList)
+            const update = data[index]
+            console.log(update)
+            dispatch({
+              type: ADD_BORROW,
+              payload:update
+            })
           }
     function speed2()
           {
@@ -29,8 +37,8 @@ export default function Student  ({borrowlist, updateBorrowList}) {
     <div style={{fontFamily:"Courier New"}}>
         <br/>
         <ul>
-            <li><a href="/borrow">Borrowed Books</a></li>
-            <li><a class="active" href="/student">Profile</a></li>
+            <li><Link to="/borrow">Borrowed Books</Link></li>
+            <li><Link class="active" to="/student">Profile</Link></li>
         </ul>
 
         <h1 class="webkit" style={{color: "rgb(255, 238, 0)",textAlign:"center",fontSize:"5rem",margin:0}}>
@@ -41,6 +49,7 @@ export default function Student  ({borrowlist, updateBorrowList}) {
         <p class="enter">Enter the Book/Journal/Newsletter:</p>
         <section class="searchtext"><b>ACT Library Search</b></section>
         <div class="bar">
+          {console.log(initState)}
         <a href={"http://integratedonlineedigitallibraryact.s3.amazonaws.com/"}>
             <input class="searchbar" type="text" title="Search" 
             placeholder="Search over 784393458 resources in ACT Library!"/>
